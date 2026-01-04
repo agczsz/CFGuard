@@ -32,10 +32,10 @@ cd /opt/cfserver && pkill dns-server && nohup ./dns-server > /dev/null 2>&1 &
 
 1. 新建目录
 
-```
-mkdir -p /opt/cfserver
-cd /opt/cfserver
-```
+   ```bash
+   mkdir -p /opt/cfserver
+   cd /opt/cfserver
+   ```
 
 2. 上传到 Linux 服务器
 
