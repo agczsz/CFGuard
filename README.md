@@ -9,6 +9,14 @@ ufw allow 8081/tcp
 ```
 
 
+安装 unzip 工具避免安装失败
+
+```
+sudo apt-get update
+sudo apt-get install unzip
+```
+
+
 ### 部署脚本
 
 ```
