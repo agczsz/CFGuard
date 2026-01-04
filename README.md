@@ -1,6 +1,12 @@
 
 
-> 首先是开放防火墙，例如：ufw allow 8081/tcp
+### 放行防火墙
+
+默认`8081`端口，例如
+
+```
+ufw allow 8081/tcp
+```
 
 
 ### 部署脚本
@@ -24,7 +30,14 @@ cd /opt/cfserver && pkill dns-server && nohup ./dns-server > /dev/null 2>&1 &
 
 ### 部署说明：
 
-1. 上传到 Linux 服务器
+1. 新建目录
+
+```
+mkdir -p /opt/cfserver
+cd /opt/cfserver
+```
+
+2. 上传到 Linux 服务器
 
    ```bash
    # 将以下文件上传到服务器
@@ -32,7 +45,7 @@ cd /opt/cfserver && pkill dns-server && nohup ./dns-server > /dev/null 2>&1 &
    - web/ (整个目录)
    ```
 
-2. __在服务器上设置__
+3. __在服务器上设置__
 
    ```bash
    # 赋予执行权限
@@ -45,7 +58,7 @@ cd /opt/cfserver && pkill dns-server && nohup ./dns-server > /dev/null 2>&1 &
    nohup ./dns-server > cfserver.log 2>&1 &
    ```
 
-3. 访问 Web 界面
+4. 访问 Web 界面
 
    - 浏览器访问：http://服务器IP:8081
    
