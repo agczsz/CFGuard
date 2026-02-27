@@ -180,6 +180,8 @@ func (e *Engine) check(m *Monitor) {
 	switch m.Config.CheckType {
 	case "http", "https":
 		success = e.checkHTTP(m)
+	case "tcping":               // 新增：TCPing 分支
+		success = e.checkTCP(m)
 	default: // ping
 		success = e.checkPing(m)
 	}
