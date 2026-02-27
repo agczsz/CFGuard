@@ -192,6 +192,28 @@ func (e *Engine) check(m *Monitor) {
 	e.checkBackupHealth(m)
 }
 
+
+func (e *Engine) checkTCP(m *Monitor) bool {
+    target := m.Config.CheckTarget
+    if target == "" {
+        return false
+    }
+
+    timeoutSeconds := m.Config.TimeoutSeconds
+    if timeoutSeconds <= 0 {
+        timeoutSeconds = 2
+    }
+
+    // 尝试建立 TCP 连接
+    conn, err := net.DialTimeout("tcp", target, time.Second*time.Duration(timeoutSeconds))
+    if err != nil {
+        log.Printf("TCP check error for %s (%s): %v", m.Config.Name, target, err)
+        return false
+    }
+    defer conn.Close()
+    return true
+}
+
 func (e *Engine) checkBackupHealth(m *Monitor) {
 	m.mu.RLock()
 	shouldCheck := m.Status == StatusDown && m.Config.CheckType == "ping" && m.Config.BackupIP != ""
