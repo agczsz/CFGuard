@@ -3,7 +3,9 @@ package monitor
 import (
 	"context"
 	"log"
+	"net"       // 新增：用于 TCP 连接
 	"net/http"
+	"strings"   // 新增：用于字符串处理
 	"sync"
 	"time"
 
