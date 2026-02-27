@@ -174,12 +174,14 @@ func (e *Engine) scheduledSwitch(m *Monitor) {
 }
 
 func (e *Engine) check(m *Monitor) {
-	var success bool
-	switch m.Config.CheckType {
-	case "http", "https":
-		success = e.checkHTTP(m)
-	default: // ping
-		success = e.checkPing(m)
+    var success bool
+    switch m.Config.CheckType {
+    case "http", "https":
+        success = e.checkHTTP(m)
+    case "tcping": // 新增分支
+        success = e.checkTCP(m)
+    default: // ping
+        success = e.checkPing(m)
 	}
 
 	if success {
